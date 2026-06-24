@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Calculator</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1c1c1e" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===================== CALCULATOR (disguise) ===================== -->
+  <div id="screen-calculator" class="screen active calc-screen">
+    <div id="calc-display">0</div>
+    <div id="calc-keys" class="calc-keys">
+      <button data-action="clear" class="calc-btn calc-fn">AC</button>
+      <button data-action="/" class="calc-btn calc-op">÷</button>
+      <button data-action="*" class="calc-btn calc-op">×</button>
+      <button data-action="-" class="calc-btn calc-op">−</button>
+
+      <button data-digit="7" class="calc-btn">7</button>
+      <button data-digit="8" class="calc-btn">8</button>
+      <button data-digit="9" class="calc-btn">9</button>
+      <button data-action="+" class="calc-btn calc-op tall">+</button>
+
+      <button data-digit="4" class="calc-btn">4</button>
+      <button data-digit="5" class="calc-btn">5</button>
+      <button data-digit="6" class="calc-btn">6</button>
+
+      <button data-digit="1" class="calc-btn">1</button>
+      <button data-digit="2" class="calc-btn">2</button>
+      <button data-digit="3" class="calc-btn">3</button>
+      <button data-action="equals" class="calc-btn calc-op tall">=</button>
+
+      <button data-digit="0" class="calc-btn wide">0</button>
+      <button data-action="decimal" class="calc-btn">.</button>
+    </div>
+  </div>
+
+  <!-- ===================== LOADING ===================== -->
+  <div id="screen-loading" class="screen center-screen">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- ===================== PASSPHRASE (first time on this device) ===================== -->
+  <div id="screen-passphrase" class="screen center-screen">
+    <div class="setup-card">
+      <h1>Enter passphrase</h1>
+      <p class="setup-sub">Same one on both of your devices. It's never stored in the app's code.</p>
+      <form id="passphrase-form">
+        <input id="passphrase-input" type="password" autocomplete="off" placeholder="Passphrase" />
+        <p id="passphrase-error" class="setup-error"></p>
+        <button type="submit" class="setup-button">Continue</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================== IDENTITY PICKER ===================== -->
+  <div id="screen-identity" class="screen center-screen">
+    <div class="setup-card">
+      <h1>Who's this?</h1>
+      <p class="setup-sub">Remembered on this device after you pick.</p>
+      <div id="identity-options" class="identity-options"></div>
+    </div>
+  </div>
+
+  <!-- ===================== CONNECT DRIVE ===================== -->
+  <div id="screen-connect-drive" class="screen center-screen">
+    <div class="setup-card">
+      <h1>Connect Google Drive</h1>
+      <p class="setup-sub">Pick the shared folder you and your partner created.</p>
+      <button id="connect-drive-button" class="setup-button">Connect &amp; pick folder</button>
+      <p id="connect-drive-error" class="setup-error"></p>
+    </div>
+  </div>
+
+  <!-- ===================== LET'S GOOO (returning device) ===================== -->
+  <div id="screen-gooo" class="screen center-screen">
+    <div class="setup-card">
+      <button id="gooo-button" class="gooo-button">Let's gooo 🚀</button>
+    </div>
+  </div>
+
+  <!-- ===================== CHAT ===================== -->
+  <div id="screen-chat" class="screen chat-screen">
+    <div class="chat-header">
+      <input id="chat-search" type="text" placeholder="Search messages…" />
+    </div>
+    <div id="chat-list" class="chat-list"></div>
+    <div class="chat-compose">
+      <button id="chat-attach-photo" class="chat-icon-btn" title="Photo">📷</button>
+      <button id="chat-attach-video" class="chat-icon-btn" title="Video">🎥</button>
+      <button id="chat-attach-voice" class="chat-icon-btn" title="Voice note">🎤</button>
+      <input id="chat-input" type="text" placeholder="Message" />
+      <button id="chat-send" class="chat-send-btn" title="Send">➤</button>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/crypto.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/drive.js"></script>
+  <script src="js/calculator.js"></script>
+  <script src="js/media.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/sync.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

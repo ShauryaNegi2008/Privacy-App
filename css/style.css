@@ -1,0 +1,205 @@
+/* ============================================================
+   HUSH — STYLES
+   The calculator is deliberately unremarkable (that's the point).
+   The chat screen gets the actual design attention.
+   ============================================================ */
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0; height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+.screen {
+  display: none;
+  position: fixed; inset: 0;
+  flex-direction: column;
+}
+.screen.active { display: flex; }
+.center-screen.active { display: flex; align-items: center; justify-content: center; }
+
+/* ---------------- Calculator (disguise) ---------------- */
+.calc-screen {
+  background: #1c1c1e;
+  justify-content: flex-end;
+  padding: 0 12px 24px;
+}
+#calc-display {
+  color: #fff;
+  font-size: 64px;
+  font-weight: 300;
+  text-align: right;
+  padding: 0 10px 24px;
+  word-break: break-all;
+  min-height: 80px;
+}
+.calc-keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 70px;
+  gap: 10px;
+}
+.calc-btn {
+  border: none;
+  border-radius: 50%;
+  background: #333336;
+  color: #fff;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.calc-btn:active { filter: brightness(1.3); }
+.calc-fn { background: #a5a5a5; color: #1c1c1e; }
+.calc-op { background: #ff9f0a; }
+.calc-btn.wide {
+  grid-column: span 2;
+  border-radius: 35px;
+  justify-content: flex-start;
+  padding-left: 28px;
+}
+.calc-btn.tall { grid-row: span 1; }
+
+/* ---------------- Loading / spinner ---------------- */
+.spinner {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 3px solid #ddd;
+  border-top-color: #B9893D;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------------- Setup screens ---------------- */
+.center-screen { background: #F7F6F3; padding: 24px; }
+.setup-card { max-width: 360px; width: 100%; text-align: center; }
+.setup-card h1 { font-size: 22px; margin-bottom: 6px; color: #211F1D; }
+.setup-sub { color: #6b6863; font-size: 14px; margin-bottom: 22px; }
+.setup-error { color: #B23A2F; font-size: 13px; min-height: 18px; margin-top: 8px; }
+
+#passphrase-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #ddd9d2;
+  border-radius: 12px;
+  font-size: 16px;
+  background: #fff;
+}
+.setup-button, .gooo-button, #connect-drive-button {
+  width: 100%;
+  margin-top: 14px;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #34344A;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.gooo-button { background: #B9893D; font-size: 18px; }
+
+.identity-options { display: flex; gap: 12px; justify-content: center; }
+.identity-option {
+  flex: 1;
+  padding: 18px;
+  border: 1px solid #ddd9d2;
+  border-radius: 14px;
+  background: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  color: #211F1D;
+  cursor: pointer;
+}
+.identity-option:active { background: #B9893D; color: #fff; }
+
+/* ---------------- Chat screen ---------------- */
+.chat-screen { background: #F7F6F3; }
+.chat-header {
+  padding: 12px 14px;
+  background: #fff;
+  border-bottom: 1px solid #eae6dd;
+}
+#chat-search {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #e3dfd5;
+  background: #F7F6F3;
+  font-size: 14px;
+}
+
+.chat-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  background-image: radial-gradient(circle, #e9e4d8 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.bubble-row { display: flex; margin-bottom: 10px; }
+.bubble-row.mine { justify-content: flex-end; }
+.bubble-row.theirs { justify-content: flex-start; }
+
+.bubble {
+  max-width: 75%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+.bubble-row.mine .bubble { background: #34344A; color: #fff; border-bottom-right-radius: 4px; }
+.bubble-row.theirs .bubble { background: #fff; color: #211F1D; border: 1px solid #eae6dd; border-bottom-left-radius: 4px; }
+
+.bubble-meta { font-size: 11px; opacity: 0.65; margin-bottom: 4px; }
+.bubble-media { max-width: 100%; border-radius: 10px; margin-top: 4px; display: block; }
+.bubble-note { font-size: 12px; opacity: 0.7; margin-top: 4px; font-style: italic; }
+.bubble-status { font-size: 11px; margin-top: 4px; opacity: 0.8; }
+.bubble-status.failed { color: #ffb4a8; cursor: pointer; text-decoration: underline; }
+.bubble-edit {
+  margin-top: 6px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  opacity: 0.7;
+  font-size: 11px;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.chat-compose {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  background: #fff;
+  border-top: 1px solid #eae6dd;
+}
+.chat-icon-btn {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 6px;
+}
+.chat-icon-btn.recording { color: #B23A2F; }
+#chat-input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 18px;
+  border: 1px solid #e3dfd5;
+  font-size: 15px;
+}
+.chat-send-btn {
+  border: none;
+  background: #B9893D;
+  color: #fff;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+}
