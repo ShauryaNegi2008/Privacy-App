@@ -37,7 +37,6 @@ function formatTime(ts) {
   return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
 
-async function renderMessages() {
 let _lastRenderSignature = null;
 
 async function renderMessages() {
@@ -78,7 +77,7 @@ async function renderMessages() {
 
   _lastRenderSignature = signature;
 }
-}
+
 
 async function renderBubble(m) {
   const wrap = document.createElement("div");
