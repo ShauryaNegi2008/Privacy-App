@@ -116,6 +116,15 @@ function startSyncLoop() {
     processOutbox();
   });
 
+  // Reopening the app (switching back to the tab, unlocking the phone)
+  // should never make you wait for the next timer tick.
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      pollOnce();
+      processOutbox();
+    }
+  });
+
   pollOnce();
   processOutbox();
 }
