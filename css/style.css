@@ -61,7 +61,7 @@ html, body {
   justify-content: flex-start;
   padding-left: 28px;
 }
-.calc-btn.tall { grid-row: span 1; }
+.calc-btn.tall { grid-row: span 2; }
 
 /* ---------------- Loading / spinner ---------------- */
 .spinner {
