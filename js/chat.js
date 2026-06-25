@@ -38,7 +38,7 @@ function formatTime(ts) {
 }
 
 async function renderMessages() {
- let _lastRenderSignature = null;
+let _lastRenderSignature = null;
 
 async function renderMessages() {
   const list = document.getElementById("chat-list");
@@ -60,18 +60,23 @@ async function renderMessages() {
     filtered.map((m) => [m.id, m.version || 1, m.status || "", m.editedAt || "", m.text || ""])
   );
   if (signature === _lastRenderSignature) return;
-  _lastRenderSignature = signature;
 
   const wasNearBottom = list.scrollHeight - list.scrollTop - list.clientHeight < 60;
 
   list.innerHTML = "";
   for (const m of filtered) {
-    list.appendChild(await renderBubble(m));
+    try {
+      list.appendChild(await renderBubble(m));
+    } catch (e) {
+      console.warn("Failed to render one message, skipping just that one", m.id, e);
+    }
   }
 
   if (wasNearBottom) {
     list.scrollTop = list.scrollHeight;
   }
+
+  _lastRenderSignature = signature;
 }
 }
 
