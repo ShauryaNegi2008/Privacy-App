@@ -31,7 +31,7 @@ const CONFIG = {
   KDF_ITERATIONS: 250000,
 
   // How often (ms) the app checks Drive for new messages while open.
-  POLL_INTERVAL_MS: 1000,
+  POLL_INTERVAL_MS: 5000,
 
   // Drive OAuth scope — deliberately the narrow "drive.file" scope
   // (the app can only see files/folders YOU explicitly pick via the
