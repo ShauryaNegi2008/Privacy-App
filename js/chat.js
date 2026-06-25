@@ -38,11 +38,13 @@ function formatTime(ts) {
 }
 
 async function renderMessages() {
+ let _lastRenderSignature = null;
+
+async function renderMessages() {
   const list = document.getElementById("chat-list");
   const stored = await messagesGetAll();
   const outbox = await outboxGetAll();
 
-  // Outbox items not yet reflected in "messages" (i.e. still pending/failed)
   const pendingIds = new Set(outbox.map((o) => o.id));
   const merged = stored
     .filter((m) => !pendingIds.has(m.id))
@@ -54,11 +56,23 @@ async function renderMessages() {
     ? merged.filter((m) => (m.text || "").toLowerCase().includes(SEARCH_QUERY.toLowerCase()))
     : merged;
 
+  const signature = JSON.stringify(
+    filtered.map((m) => [m.id, m.version || 1, m.status || "", m.editedAt || "", m.text || ""])
+  );
+  if (signature === _lastRenderSignature) return;
+  _lastRenderSignature = signature;
+
+  const wasNearBottom = list.scrollHeight - list.scrollTop - list.clientHeight < 60;
+
   list.innerHTML = "";
   for (const m of filtered) {
     list.appendChild(await renderBubble(m));
   }
-  list.scrollTop = list.scrollHeight;
+
+  if (wasNearBottom) {
+    list.scrollTop = list.scrollHeight;
+  }
+}
 }
 
 async function renderBubble(m) {
