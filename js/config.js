@@ -37,5 +37,5 @@ const CONFIG = {
   // (the app can only see files/folders YOU explicitly pick via the
   // Google Picker, not your whole Drive). This avoids Google's
   // sensitive-scope verification process entirely.
-  GOOGLE_SCOPE: "https://www.googleapis.com/auth/drive.file",
+  GOOGLE_SCOPE: "https://www.googleapis.com/auth/drive",
 };
